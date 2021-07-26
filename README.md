@@ -26,6 +26,7 @@ I explain with all the details how I build the project and my way of working.
 ## Experience
 
 - **Experience 1**: Creating a noise materials
+- **Experience 2**: Drawing a circle by hypothenuse
 
 ## Documentation
 #### Code documentation

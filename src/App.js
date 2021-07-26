@@ -23,7 +23,7 @@ export default function App() {
             const Type = Experiences[e]
             return (
               <Route key={index} path={`/${index + 1}`}>
-                <Suspense fallback={<p>Loading...</p>}>
+                <Suspense fallback={null}>
                   <Type />
                 </Suspense>
               </Route>
