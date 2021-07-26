@@ -1,13 +1,13 @@
 /**
- * The default Experience
- * @module Experiences/Experience0
+ * Creating a noise materials
+ * @module Experiences/Experience1
  */
 import React, { useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-
+import noiseMaterial from '@components/Materials/Noise'
 /**
  * @function Experience
- * The default Experience
+ * Creating a noise materials
  * @return {Object} Return the dom
  */
 const Experience = () => {
@@ -22,7 +22,7 @@ const Experience = () => {
     <>
       <mesh>
         <planeGeometry args={[viewport.width, viewport.height, 32, 32]} />
-        <meshBasicMaterial color="red" ref={ref} />
+        <noiseMaterial ref={ref} />
       </mesh>
     </>
   )
