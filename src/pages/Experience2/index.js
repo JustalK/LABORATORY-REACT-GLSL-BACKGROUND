@@ -1,24 +1,31 @@
 /**
- * The module managing the home page
- * @module Home
+ * The default Experience
+ * @module Experiences/Experience0
  */
-import React from 'react'
+import React, { useRef } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
 
 /**
- * @function Home
- * Create the home page with all the slide and elements of this component inside
- * @param {function} loadedPage The function to call once the page is loaded
- * @return {Object} Return the dom of the Home
+ * @function Experience
+ * The default Experience
+ * @return {Object} Return the dom
  */
-export default function Home() {
+const Experience = () => {
+  const { viewport } = useThree()
+  const ref = useRef()
+
+  useFrame((state, delta) => {
+    ref.current.uTime += delta
+  })
+
   return (
     <>
-      <ambientLight intensity={0.1} />
-      <directionalLight color="blue" position={[0, 0, 5]} />
-      <mesh position={[0, 0, 0]}>
-        <boxGeometry />
-        <meshPhongMaterial />
+      <mesh>
+        <planeGeometry args={[viewport.width, viewport.height, 32, 32]} />
+        <meshBasicMaterial color="blue" ref={ref} />
       </mesh>
     </>
   )
 }
+
+export default Experience

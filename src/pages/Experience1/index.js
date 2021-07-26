@@ -1,17 +1,16 @@
 /**
- * The module managing the home page
- * @module Home
+ * The default Experience
+ * @module Experiences/Experience0
  */
 import React, { useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 
 /**
- * @function Home
- * Create the home page with all the slide and elements of this component inside
- * @param {function} loadedPage The function to call once the page is loaded
- * @return {Object} Return the dom of the Home
+ * @function Experience
+ * The default Experience
+ * @return {Object} Return the dom
  */
-export default function Home() {
+const Experience = () => {
   const { viewport } = useThree()
   const ref = useRef()
 
@@ -28,3 +27,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Experience
