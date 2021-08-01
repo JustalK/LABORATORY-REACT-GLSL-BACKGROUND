@@ -1,17 +1,29 @@
 import React, { Suspense } from 'react'
 import Canvas from '@components/Canvas'
 import { Route } from 'wouter'
-import Experiences from '@pages'
+import Experiences from '@pages/Experiences'
+import Tutorials from '@pages/Tutorials'
 
 export default function App() {
   return (
     <>
       <div className="navigation">
+        <div className="title">Experiences</div>
         <nav>
           <ul>
             {Object.keys(Experiences).map((e, index) => (
               <li key={index}>
-                <a href={`/${index + 1}`}>{e}</a>
+                <a href={`/e${index + 1}`}>{e}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="title">Learning</div>
+        <nav>
+          <ul>
+            {Object.keys(Tutorials).map((e, index) => (
+              <li key={index}>
+                <a href={`/t${index + 1}`}>{e}</a>
               </li>
             ))}
           </ul>
@@ -22,7 +34,17 @@ export default function App() {
           {Object.keys(Experiences).map((e, index) => {
             const Type = Experiences[e]
             return (
-              <Route key={index} path={`/${index + 1}`}>
+              <Route key={index} path={`/e${index + 1}`}>
+                <Suspense fallback={null}>
+                  <Type />
+                </Suspense>
+              </Route>
+            )
+          })}
+          {Object.keys(Tutorials).map((e, index) => {
+            const Type = Tutorials[e]
+            return (
+              <Route key={index} path={`/t${index + 1}`}>
                 <Suspense fallback={null}>
                   <Type />
                 </Suspense>

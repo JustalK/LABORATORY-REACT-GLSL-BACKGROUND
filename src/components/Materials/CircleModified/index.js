@@ -28,7 +28,7 @@ export default class CircleModifiedMaterial extends THREE.ShaderMaterial {
           float a = atan(pos.y,pos.x);
 
           float f = cos(a*2.0);
-          // float f = abs(cos(a*3.));
+          //float f = abs(cos(a*2.0));
           // float f = abs(cos(a*2.5))*.5+.3;
           // float f = abs(cos(a*12.)*sin(a*3.))*.8+.1;
           // float f = smoothstep(-.5,1., cos(a*10.))*0.2+0.5;
