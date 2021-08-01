@@ -1,6 +1,6 @@
-![Alt text](documentation/video.gif?raw=true "REACT-APP-GLSL")
+# LABORATORY REACT GLSL BACKGROUND
 
-# REACT APP TEMPLATE
+https://laboratory-react-glsl-bg.herokuapp.com/
 
 ## Goal
 
