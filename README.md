@@ -17,6 +17,8 @@ For the WebGl part, I am using `React Three Fiber` and `GLSL` for the shader. Fo
 I explain with all the details how I build the project and my way of working.
 
 - [Experiences](#experiences)
+- [Tutorials](#tutorials)
+- [Links](#links)
 - [Documentation](#documentation)
 - [Organization](#organization)
 - [Development](#development)
@@ -26,8 +28,21 @@ I explain with all the details how I build the project and my way of working.
 ## Experience
 
 - **Experience 1**: Creating a noise materials
-- **Experience 2**: Drawing a circle by hypothenuse
-- **Experience 3**: Drawing a rectangle
+
+## Experience
+
+- **Tutorial 1**: Drawing a circle by hypothenuse
+- **Tutorial 2**: Max for drawing a rectangle
+- **Tutorial 3**: Understanding step with a rectangle
+- **Tutorial 4**: Drawing a circle
+- **Tutorial 5**: Using a frac for drawing a zen garden
+- **Tutorial 6**: Varying the radius of a circle for drawing forms
+
+## Links
+
+- [Book of shaders](https://thebookofshaders.com/)
+- [Shaderific API](https://www.shaderific.com/)
+- [Iquilezles](https://iquilezles.org/)
 
 ## Documentation
 #### Code documentation

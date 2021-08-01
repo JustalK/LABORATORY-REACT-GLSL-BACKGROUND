@@ -18,7 +18,7 @@ export default function App() {
             ))}
           </ul>
         </nav>
-        <div className="title">Learning</div>
+        <div className="title">Tutorials</div>
         <nav>
           <ul>
             {Object.keys(Tutorials).map((e, index) => (
