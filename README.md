@@ -4,13 +4,9 @@ https://laboratory-react-glsl-bg.herokuapp.com/
 
 ## Goal
 
-This project is a template for building React App linked to WebGl with all my favorite tools already configured.
+This project is my playground for training for `GLSL` and aslo for making full screen effect. I am liking this project to the latest version of `react` with `r3f` or in full name `react-three-fiber`.
 
-Obviously, the app is using the latest version of `react`. For avoiding the relative path, I modified the webpack and allowing the import with an alias. I also added the support for sass files.
-
-In addition, I added `prettier` and configured it for working well with `esLint`. Finally, I added the basic usefull package such as the router and the helmet.  
-
-For the WebGl part, I am using `React Three Fiber` and `GLSL` for the shader. For a starting point, the project already has 2 pages with few meshes, 1 GLSL transition and a scroll linked to the canvas.
+GLSL is hard language to learn because of the small resources available but it happens to be at the same time the most impressive effect that a website could have.
 
 ## Plan of the presentation
 
@@ -28,6 +24,7 @@ I explain with all the details how I build the project and my way of working.
 ## Experience
 
 - **Experience 1**: Creating a noise materials
+- **Experience 2**: Creating a fire materials (perfect for transition between one slide to another)
 
 ## Experience
 
@@ -37,6 +34,7 @@ I explain with all the details how I build the project and my way of working.
 - **Tutorial 4**: Drawing a circle
 - **Tutorial 5**: Using a frac for drawing a zen garden
 - **Tutorial 6**: Varying the radius of a circle for drawing forms
+- **Tutorial 7**: Creating a shader using the shaderMaterial from drei 
 
 ## Links
 
