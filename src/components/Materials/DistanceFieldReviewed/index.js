@@ -18,24 +18,19 @@ const DistanceFieldReviewedMaterial = shaderMaterial(
   `,
   `
     uniform vec3 resolution;
+    float circle(in vec2 _st, in float _radius){
+      vec2 dist = _st;
+	     return 1.-smoothstep(_radius-(_radius*0.01), _radius+(_radius*0.01), dot(dist,dist)*4.0);
+    }
+
     uniform float time;
 
     void mainImage( out vec4 fragColor, in vec2 fragCoord ){
-    	vec3 c;
-    	float l, z = time;
+      vec2 st = gl_FragCoord.xy / resolution.xy - vec2(0.5);
+      st.y *= resolution.y / resolution.x;
+    	vec3 color = vec3(circle(st,0.25));
 
-    	for(int i=0;i<10;i++) {
-    		vec2 uv, p = fragCoord.xy/resolution.xy;
-    		uv = p;
-    		p -= .5;
-    		p.x *= resolution.x / resolution.y;
-    		z += 2.0;
-    		l = length(p);
-    		uv += p / l * (sin(z / 2.) + 1.) * abs(sin(l * 3. - z * .5));
-    		c[i] = .01 / length(abs(mod(uv, 1.) -.5));
-    	}
-
-    	fragColor = vec4(c / l, time / 2.);
+    	fragColor = vec4( color, 1.0 );
     }
 
     void main() {
