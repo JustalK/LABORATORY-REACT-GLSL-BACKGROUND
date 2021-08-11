@@ -36,7 +36,8 @@ I explain with all the details how I build the project and my way of working.
 - **Tutorial 6**: Varying the radius of a circle for drawing forms
 - **Tutorial 7**: Creating a shader using the shaderMaterial from drei
 - **Tutorial 8**: Creating a moving circle
-- **Tutorial 8**: Rotatin a squarewith rotating matrix
+- **Tutorial 9**: Rotating a squarewith rotating matrix
+- **Tutorial 10**: Multiple shape all together
 
 ## Links
 
