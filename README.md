@@ -34,13 +34,17 @@ I explain with all the details how I build the project and my way of working.
 - **Tutorial 4**: Drawing a circle
 - **Tutorial 5**: Using a frac for drawing a zen garden
 - **Tutorial 6**: Varying the radius of a circle for drawing forms
-- **Tutorial 7**: Creating a shader using the shaderMaterial from drei 
+- **Tutorial 7**: Creating a shader using the shaderMaterial from drei
+- **Tutorial 8**: Creating a moving circle
+- **Tutorial 9**: Rotating a squarewith rotating matrix
+- **Tutorial 10**: Multiple shape all together
 
 ## Links
 
 - [Book of shaders](https://thebookofshaders.com/)
 - [Shaderific API](https://www.shaderific.com/)
 - [Iquilezles](https://iquilezles.org/)
+- [inspirnathan](https://inspirnathan.com/posts/47-shadertoy-tutorial-part-1/)
 
 ## Documentation
 #### Code documentation
