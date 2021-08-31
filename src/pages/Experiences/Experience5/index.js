@@ -21,7 +21,11 @@ const Experience = () => {
 
   return (
     <>
-      <mesh>
+      <mesh
+        onPointerMove={(e) => {
+          ref.current.uMouse = e.intersections[0].uv
+        }}
+      >
         <planeGeometry args={[viewport.width, viewport.height, 32, 32]} />
         <backgroundFogMaterial
           color="red"
