@@ -41,6 +41,9 @@ I explain with all the details how I build the project and my way of working.
 - **Tutorial 8**: Creating a moving circle
 - **Tutorial 9**: Rotating a squarewith rotating matrix
 - **Tutorial 10**: Multiple shape all together
+- **Tutorial 11**: Cliping, fusion of multiple shapes
+- **Tutorial 12**: How to draw a line
+- **Tutorial 13**: Ray Marching - How to draw a sphere
 
 ## Links
 

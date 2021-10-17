@@ -10,6 +10,7 @@ import Tutorial9 from '@pages/Tutorials/Tutorial9'
 import Tutorial10 from '@pages/Tutorials/Tutorial10'
 import Tutorial11 from '@pages/Tutorials/Tutorial11'
 import Tutorial12 from '@pages/Tutorials/Tutorial12'
+import Tutorial13 from '@pages/Tutorials/Tutorial13'
 
 export default {
   Tutorial1,
@@ -23,5 +24,6 @@ export default {
   Tutorial9,
   Tutorial10,
   Tutorial11,
-  Tutorial12
+  Tutorial12,
+  Tutorial13
 }
