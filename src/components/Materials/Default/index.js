@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { extend } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
 
-const RayMarchingMultipleMaterial = shaderMaterial(
+const DefaultMaterial = shaderMaterial(
   {
     iTime: 0.0,
     iResolution: new THREE.Vector3()
@@ -24,53 +24,49 @@ const RayMarchingMultipleMaterial = shaderMaterial(
     const float MAX_DIST = 100.0;
     const float PRECISION = 0.001;
 
-    vec4 minWithColor(vec4 obj1, vec4 obj2) {
-      if (obj2.x < obj1.x) return obj2; // The x component of the object holds the "signed distance" value
+    struct Surface {
+      float sd; // signed distance value
+      vec3 col; // color
+    };
+
+    Surface minWithColor(Surface obj1, Surface obj2) {
+      if (obj2.sd < obj1.sd) return obj2;
       return obj1;
     }
 
-    vec4 sdSphere(vec3 p, float r, vec3 offset, vec3 col)
-    {
-      float d = length(p - offset) - r;
-      return vec4(d, col);
-    }
-
-    vec4 sdFloor(vec3 p, vec3 col) {
+    Surface sdFloor(vec3 p, vec3 col) {
       float d = p.y + 1.;
-      return vec4(d, col);
+      return Surface(d, col);
     }
 
-    vec4 sdScene(vec3 p) {
-      vec4 sphereLeft = sdSphere(p, 1., vec3(-2.5, 0, -2), vec3(0, .8, .8));
-      vec4 sphereRight = sdSphere(p, 1., vec3(2.5, 0, -2), vec3(1, 0.58, 0.29));
-      vec4 co = minWithColor(sphereLeft, sphereRight); // co = closest object containing "signed distance" and color
+    Surface sdScene(vec3 p) {
       vec3 floorColor = vec3(1. + 0.7*mod(floor(p.x) + floor(p.z), 2.0));
-      co = minWithColor(co, floorColor);
+      Surface co = sdFloor(p, floorColor);
       return co;
     }
 
-    vec4 rayMarch(vec3 ro, vec3 rd, float start, float end) {
+    Surface rayMarch(vec3 ro, vec3 rd, float start, float end) {
       float depth = start;
-      vec4 co; // closest object
+      Surface co; // closest object
 
       for (int i = 0; i < MAX_MARCHING_STEPS; i++) {
         vec3 p = ro + depth * rd;
         co = sdScene(p);
-        depth += co.x;
-        if (co.x < PRECISION || depth > end) break;
+        depth += co.sd;
+        if (co.sd < PRECISION || depth > end) break;
       }
 
-      vec3 col = vec3(co.yzw);
+      co.sd = depth;
 
-      return vec4(depth, col);
+      return co;
     }
 
     vec3 calcNormal(vec3 p) {
       float e = 0.0005;
       return normalize(vec3(
-        sdScene(vec3(p.x + e, p.y, p.z)).x - sdScene(vec3(p.x - e, p.y, p.z)).x,
-        sdScene(vec3(p.x, p.y + e, p.z)).x - sdScene(vec3(p.x, p.y - e, p.z)).x,
-        sdScene(vec3(p.x, p.y, p.z  + e)).x - sdScene(vec3(p.x, p.y, p.z - e)).x
+        sdScene(vec3(p.x + e, p.y, p.z)).sd - sdScene(vec3(p.x - e, p.y, p.z)).sd,
+        sdScene(vec3(p.x, p.y + e, p.z)).sd - sdScene(vec3(p.x, p.y - e, p.z)).sd,
+        sdScene(vec3(p.x, p.y, p.z  + e)).sd - sdScene(vec3(p.x, p.y, p.z - e)).sd
       ));
     }
 
@@ -85,19 +81,19 @@ const RayMarchingMultipleMaterial = shaderMaterial(
       vec3 rd = normalize(vec3(uv, -1));
       vec3 backgroundColor = vec3(0.835, 1, 1);
 
-      vec4 co = rayMarch(ro, rd, MIN_DIST, MAX_DIST);
+      Surface co = rayMarch(ro, rd, MIN_DIST, MAX_DIST);
 
-      if (co.x > MAX_DIST) {
+      if (co.sd > MAX_DIST) {
         col = backgroundColor;
       } else {
-        vec3 p = ro + rd * co.x;
+        vec3 p = ro + rd * co.sd;
         vec3 normal = calcNormal(p);
         vec3 lightPosition = vec3(2, 2, 4);
         vec3 lightDirection = normalize(lightPosition - p);
 
         float dif = clamp(dot(normal, lightDirection), 0.2, 1.);
 
-        col = vec3(dif) * co.yzw + backgroundColor * .1;
+        col = vec3(dif) * co.col + backgroundColor * .1;
       }
 
       fragColor = vec4(col,1.0); // Output to screen
@@ -108,4 +104,4 @@ const RayMarchingMultipleMaterial = shaderMaterial(
     `
 )
 
-extend({ RayMarchingMultipleMaterial })
+extend({ DefaultMaterial })
