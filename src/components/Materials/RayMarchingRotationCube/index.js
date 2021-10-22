@@ -76,9 +76,9 @@ const RayMarchingRotationCubeMaterial = shaderMaterial(
         );
     }
 
-    Surface sdBox( vec3 p, vec3 b, vec3 offset, vec3 col, mat3 transform)
+    Surface sdBox( vec3 p, vec3 b, vec3 offset, vec3 col, mat3 transform, vec3 pivot)
     {
-      p = (p - offset) * transform;
+      p = (p - offset) * transform - pivot;
       vec3 q = abs(p) - b;
       float d = length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
       return Surface(d, col);
@@ -92,7 +92,7 @@ const RayMarchingRotationCubeMaterial = shaderMaterial(
     Surface sdScene(vec3 p) {
       vec3 floorColor = vec3(1. + 0.7*mod(floor(p.x) + floor(p.z), 2.0));
       Surface co = sdFloor(p, floorColor);
-      co = minWithColor(co, sdBox(p, vec3(1), vec3(0, 0.5, -4), vec3(1, 0, 0), rotateX(iTime)));
+      co = minWithColor(co, sdBox(p, vec3(1), vec3(0, 0.5, -4), vec3(1, 0, 0), rotateY(iTime), vec3(3, 0, 0)));
       return co;
     }
 
