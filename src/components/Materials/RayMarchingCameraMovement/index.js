@@ -34,14 +34,65 @@ const RayMarchingCameraMovementMaterial = shaderMaterial(
       return obj1;
     }
 
+    // Rotation matrix around the X axis.
+    mat3 rotateX(float theta) {
+        float c = cos(theta);
+        float s = sin(theta);
+        return mat3(
+            vec3(1, 0, 0),
+            vec3(0, c, -s),
+            vec3(0, s, c)
+        );
+    }
+
+    // Rotation matrix around the Y axis.
+    mat3 rotateY(float theta) {
+        float c = cos(theta);
+        float s = sin(theta);
+        return mat3(
+            vec3(c, 0, s),
+            vec3(0, 1, 0),
+            vec3(-s, 0, c)
+        );
+    }
+
+    // Rotation matrix around the Z axis.
+    mat3 rotateZ(float theta) {
+        float c = cos(theta);
+        float s = sin(theta);
+        return mat3(
+            vec3(c, -s, 0),
+            vec3(s, c, 0),
+            vec3(0, 0, 1)
+        );
+    }
+
+    // Identity matrix.
+    mat3 identity() {
+        return mat3(
+            vec3(1, 0, 0),
+            vec3(0, 1, 0),
+            vec3(0, 0, 1)
+        );
+    }
+
     Surface sdFloor(vec3 p, vec3 col) {
       float d = p.y + 1.;
+      return Surface(d, col);
+    }
+
+    Surface sdBox( vec3 p, vec3 b, vec3 offset, vec3 col, mat3 transform)
+    {
+      p = (p - offset) * transform;
+      vec3 q = abs(p) - b;
+      float d = length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
       return Surface(d, col);
     }
 
     Surface sdScene(vec3 p) {
       vec3 floorColor = vec3(1. + 0.7*mod(floor(p.x) + floor(p.z), 2.0));
       Surface co = sdFloor(p, floorColor);
+      co = minWithColor(co, sdBox(p, vec3(1), vec3(0, 0.5, -4), vec3(1, 0, 0), identity()));
       return co;
     }
 
@@ -77,7 +128,12 @@ const RayMarchingCameraMovementMaterial = shaderMaterial(
       uv.x *= iResolution.x/iResolution.y;
 
       vec3 col = vec3(0);
-      vec3 ro = vec3(0, 0, 5);
+      // Move the camera like a circle
+      vec3 ro = vec3(cos(iTime), sin(iTime) + 0.1, 3);
+
+      // vec3 ro = normalize(vec3(uv, -1));
+      // ro *= rotateX(sin(iTime) * 0.5);
+
       vec3 rd = normalize(vec3(uv, -1));
       vec3 backgroundColor = vec3(0.835, 1, 1);
 
