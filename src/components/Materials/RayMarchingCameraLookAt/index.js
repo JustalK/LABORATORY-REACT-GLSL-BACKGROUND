@@ -139,8 +139,13 @@ const RayMarchingCameraLookAtMaterial = shaderMaterial(
 
       vec3 col = vec3(0);
 
-      vec3 lp = vec3(-4, 0.5, -4); // lookat point (aka camera target)
-      vec3 ro = vec3(0, 0, 3); // ray origin that represents camera position
+      vec3 lp = vec3(0, 0.5, -4); // lookat point (aka camera target)
+      vec3 ro = vec3(0, 0.5, 0); // ray origin that represents camera position
+
+      float cameraRadius = 10.;
+      ro.x = cameraRadius * cos(iTime) + lp.x; // convert x-component to polar and add offset
+      ro.z = cameraRadius * sin(iTime) + lp.z; 
+
       vec3 rd = camera(ro, lp) * normalize(vec3(uv, -1)); // ray direction
 
       vec3 backgroundColor = vec3(0.835, 1, 1);
