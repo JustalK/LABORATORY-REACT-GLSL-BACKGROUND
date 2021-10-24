@@ -28,6 +28,7 @@ I explain with all the details how I build the project and my way of working.
 - **Experience 3**: Testing the postprocessing on r3f
 - **Experience 4**: Creating a glitch effect
 - **Experience 5**: Adding a full screen with fog and two color (mouse hover)
+- **Experience 6**: Playing with the mandelbrot fractal
 
 ## Experience
 
@@ -44,6 +45,10 @@ I explain with all the details how I build the project and my way of working.
 - **Tutorial 11**: Cliping, fusion of multiple shapes
 - **Tutorial 12**: How to draw a line
 - **Tutorial 13**: Ray Marching - How to draw a sphere
+- **Tutorial 14**: Multiple object and with color
+- **Tutorial 15**: Rotate an object around a pivot
+- **Tutorial 16**: Move the camera
+- **Tutorial 17**: Camera looking at a point
 
 ## Links
 
