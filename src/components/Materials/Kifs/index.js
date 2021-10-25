@@ -42,7 +42,7 @@ const KifsMaterial = shaderMaterial(
       n = N((2.0/3.0)*3.1415);
       float scale = 1.0;
       uv.x += 0.5;
-      for(int i=0; i<10; i++) {
+      for(int i=0; i<5; i++) {
         uv *= 3.0;
         scale *= 3.0;
         uv.x -= 1.5;
@@ -55,9 +55,9 @@ const KifsMaterial = shaderMaterial(
       vec3 col = vec3(0.0);
 
       d = length(uv - vec2(clamp(uv.x, -1.0, 1.0), 0));
-      col += smoothstep(1.0/iResolution.y, .0, d/scale);
+      col += smoothstep(0.01/iResolution.y, .0, d/scale);
       uv /= scale;
-      col += texture(iTexture, uv * 2.0 - iTime*0.03).rgb;
+      col += texture(iTexture, uv * 2.0 - iTime*0.5).rgb;
 
       fragColor = vec4(col,1.0); // Output to screen
     }

@@ -29,6 +29,7 @@ I explain with all the details how I build the project and my way of working.
 - **Experience 4**: Creating a glitch effect
 - **Experience 5**: Adding a full screen with fog and two color (mouse hover)
 - **Experience 6**: Playing with the mandelbrot fractal
+- **Experience 6**: Playing with the kifs ()
 
 ## Experience
 

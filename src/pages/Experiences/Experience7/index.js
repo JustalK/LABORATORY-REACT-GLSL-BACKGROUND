@@ -15,7 +15,11 @@ import kifsMaterial from '@components/Materials/Kifs'
 const Experience = () => {
   const { viewport } = useThree()
   const ref = useRef()
-  const [iTexture] = useLoader(THREE.TextureLoader, ['./me.jpeg'])
+  const [iTexture] = useLoader(THREE.TextureLoader, ['./bg.jpeg'])
+  if (iTexture) {
+    iTexture.wrapS = THREE.RepeatWrapping
+    iTexture.wrapT = THREE.RepeatWrapping
+  }
   const { size } = useThree()
 
   useFrame((state, delta) => {
