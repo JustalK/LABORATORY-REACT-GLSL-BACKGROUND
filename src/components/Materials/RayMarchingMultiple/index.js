@@ -44,8 +44,7 @@ const RayMarchingMultipleMaterial = shaderMaterial(
       vec4 sphereLeft = sdSphere(p, 1., vec3(-2.5, 0, -2), vec3(0, .8, .8));
       vec4 sphereRight = sdSphere(p, 1., vec3(2.5, 0, -2), vec3(1, 0.58, 0.29));
       vec4 co = minWithColor(sphereLeft, sphereRight); // co = closest object containing "signed distance" and color
-      vec3 floorColor = vec3(1. + 0.7*mod(floor(p.x) + floor(p.z), 2.0));
-      co = minWithColor(co, floorColor);
+      co = minWithColor(co, sdFloor(p, vec3(0, 1, 0)));
       return co;
     }
 
