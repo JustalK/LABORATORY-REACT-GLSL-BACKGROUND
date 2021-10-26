@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { extend } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
 
-const SpaceMaterial = shaderMaterial(
+const ArtSpaceMaterial = shaderMaterial(
   {
     iTime: 0.0,
     iResolution: new THREE.Vector3()
@@ -32,10 +32,11 @@ const SpaceMaterial = shaderMaterial(
 
       vec3 col = vec3(0);
 
-      float a = 3.1415/4.0;
+      float a = 3.1415/16.0;
       float s = sin(a);
       float c = cos(a);
-      uv *= mat2(c, -s, c, s);
+      uv *= mat2(c, -s, s, c);
+
       uv *= 15.0;
 
       vec2 gv = fract(uv) - 0.5;
@@ -47,21 +48,15 @@ const SpaceMaterial = shaderMaterial(
         for(float x=-1.0; x <= 1.0 ;x++) {
           vec2 offs = vec2(x, y);
 
-          float d = length(gv-offs);
-          float dist = length(id+offs)*0.3;
+          float d = length(gv);
+          float dist = length(id+offs)*0.1;
 
           float r = mix(0.3, 1.5, sin(dist-iTime)*0.5 + 0.5);
-          m = Xor(m, smoothstep(r, r*0.9, d));
+          m = Xor(m, smoothstep(r*0.9, r*0.9, d + 0.5));
         }
       }
 
-      //col.rg = gv;
       col += m;
-
-      float a2 = 3.1415*sin(iTime);
-      float s2 = sin(a2);
-      float c2 = cos(a2);
-      col.xy *= mat2(c2, -s2, c2, s2);
 
       fragColor = vec4(col,1.0); // Output to screen
     }
@@ -71,4 +66,4 @@ const SpaceMaterial = shaderMaterial(
     `
 )
 
-extend({ SpaceMaterial })
+extend({ ArtSpaceMaterial })

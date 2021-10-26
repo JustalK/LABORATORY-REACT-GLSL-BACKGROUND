@@ -5,7 +5,7 @@
 import React, { useRef } from 'react'
 import { useFrame, useThree, useLoader } from '@react-three/fiber'
 import * as THREE from 'three'
-import spaceMaterial from '@components/Arts/Space'
+import artSpaceMaterial from '@components/Arts/Space'
 
 /**
  * @function Experience
@@ -30,7 +30,7 @@ const Experience = () => {
     <>
       <mesh>
         <planeGeometry args={[viewport.width, viewport.height, 32, 32]} />
-        <spaceMaterial
+        <artSpaceMaterial
           iResolution={[size.width, size.height, 1]}
           ref={ref}
           iTexture={iTexture}
