@@ -55,7 +55,6 @@ const SpaceMaterial = shaderMaterial(
         }
       }
 
-      //col.rg = gv;
       col += m;
 
       fragColor = vec4(col,1.0); // Output to screen
