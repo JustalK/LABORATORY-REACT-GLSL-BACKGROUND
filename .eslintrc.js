@@ -48,6 +48,7 @@ module.exports = {
     ],
     'arrow-body-style': 0,
     'react/prop-types': 0,
-    'no-return-assign': 0
+    'no-return-assign': 0,
+    'no-unused-vars': 'off'
   }
 }
