@@ -25,7 +25,7 @@
     "wouter": "^2.7.4"
   },
   "scripts": {
-    "start": "npm install -g serve && serve -s build",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && npm install -g serve && serve -s build",
     "dev": "npm run linter:fix && react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
