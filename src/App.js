@@ -34,7 +34,7 @@ export default function App() {
           <ul>
             {Object.keys(Arts).map((e, index) => (
               <li key={index}>
-                <a href={`/t${index + 1}`}>{e}</a>
+                <a href={`/a${index + 1}`}>{e}</a>
               </li>
             ))}
           </ul>
@@ -65,7 +65,7 @@ export default function App() {
           {Object.keys(Arts).map((e, index) => {
             const Type = Arts[e]
             return (
-              <Route key={index} path={`/t${index + 1}`}>
+              <Route key={index} path={`/a${index + 1}`}>
                 <Suspense fallback={null}>
                   <Type />
                 </Suspense>
